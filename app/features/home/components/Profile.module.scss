@@ -1,0 +1,70 @@
+.Profile {
+  margin: 8px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.IconBox {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: solid 2px #fff;
+}
+
+.Icon {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+}
+
+.TextContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 32px;
+
+  & > * {
+    margin: 8px 0;
+  }
+}
+
+.IconLink {
+  color: var(--color-link);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: 0.4s;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.7rem;
+    background-color: #fff;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.TwitterLink {
+  composes: IconLink;
+
+  &::before {
+    -webkit-mask-image: url(/img/twitter.svg);
+    mask-image: url(/img/twitter.svg);
+  }
+}
+
+.GithubLink {
+  composes: IconLink;
+
+  &::before {
+    -webkit-mask-image: url(/img/github.svg);
+    mask-image: url(/img/github.svg);
+  }
+}

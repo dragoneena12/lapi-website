@@ -1,0 +1,62 @@
+.Like {
+  margin: 8px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Box {
+  border: solid 2px #fff;
+  border-radius: 20px;
+  padding: 12px;
+  width: 300px;
+  margin: 20px;
+}
+
+.IconText {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.7rem;
+    background-color: #fff;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+}
+
+.PawText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/paw.svg);
+    mask-image: url(/img/paw.svg);
+  }
+}
+.PCText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/display.svg);
+    mask-image: url(/img/display.svg);
+  }
+}
+.GameText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/game-controller.svg);
+    mask-image: url(/img/game-controller.svg);
+  }
+}
+
+.List {
+  list-style-position: inside;
+}

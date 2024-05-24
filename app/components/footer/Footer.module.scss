@@ -1,0 +1,46 @@
+.Footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.SocialIconContainer {
+  display: flex;
+}
+
+.SocialIcon {
+  height: 1.3rem;
+  width: 1.3rem;
+  margin: 8px 12px;
+  background-color: var(--color-grey);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #fff;
+    transform: scale(1.2);
+  }
+}
+
+.TwitterIcon {
+  composes: SocialIcon;
+  -webkit-mask-image: url(/img/twitter.svg);
+  mask-image: url(/img/twitter.svg);
+}
+
+.GithubIcon {
+  composes: SocialIcon;
+  -webkit-mask-image: url(/img/github.svg);
+  mask-image: url(/img/github.svg);
+}
+
+.Text {
+  color: var(--color-grey);
+}

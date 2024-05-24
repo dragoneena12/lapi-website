@@ -1,0 +1,51 @@
+:root {
+  --color-primary: #005caf;
+  // Ruri
+  --color-secondary: #566c73;
+  // Ainezumi
+  --color-success: #00aa90;
+  // Aomidori
+  --color-info: #2ea9df;
+  // Tsuyukusa
+  --color-danger: #c1328e;
+  // Botan
+  --color-warning: #8b81c3;
+  // Fuji
+  --color-dark: #08192d;
+  // Kachi
+  --color-background: #0f2540;
+  --color-background-inverse: #fff;
+  // Kon
+  --color-grey: hsla(0, 0%, 100%, 0.5);
+
+  --color-link: var(--color-warning);
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-text: #fff;
+  --color-text-white: #fff;
+  --color-text-inverse: #000;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--color-background);
+  color: #fff;
+  width: 100%;
+  overflow-y: scroll;
+}

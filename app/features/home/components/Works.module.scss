@@ -1,0 +1,168 @@
+.Works {
+  margin: 8px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Box {
+  border: solid 2px #fff;
+  border-radius: 20px;
+  padding: 12px;
+  width: 500px;
+  margin: 20px;
+}
+
+.BoxHeading {
+  font-size: 2rem;
+}
+
+.List {
+  list-style-position: inside;
+}
+
+.Link {
+  width: 80%;
+  color: var(--color-link);
+  padding: 4px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: block;
+  transition: 0.4s;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.Languages {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 8px;
+  }
+}
+
+.IconText {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.3rem;
+    background-color: var(--color-text);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+  }
+
+}
+
+.GithubText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/github.svg);
+    mask-image: url(/img/github.svg);
+  }
+}
+
+.JSText {
+  composes: IconText;
+
+  &::before {
+    background-color: #f7df1e;
+    -webkit-mask-image: url(/img/javascript.svg);
+    mask-image: url(/img/javascript.svg);
+  }
+}
+.TSText {
+  composes: IconText;
+
+  &::before {
+    background-color: #007acc;
+    -webkit-mask-image: url(/img/typescript.svg);
+    mask-image: url(/img/typescript.svg);
+  }
+}
+
+.ReactText {
+  composes: IconText;
+
+  &::before {
+    background-color: #61dafb;
+    -webkit-mask-image: url(/img/react.svg);
+    mask-image: url(/img/react.svg);
+  }
+}
+
+.GatsbyText {
+  composes: IconText;
+
+  &::before {
+    background-color: #639;
+    -webkit-mask-image: url(/img/gatsby.svg);
+    mask-image: url(/img/gatsby.svg);
+  }
+}
+
+.NextText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/next-dot-js.svg);
+    mask-image: url(/img/next-dot-js.svg);
+  }
+}
+
+.GraphqlText {
+  composes: IconText;
+
+  &::before {
+    background-color: #e10098;
+    -webkit-mask-image: url(/img/graphql.svg);
+    mask-image: url(/img/graphql.svg);
+  }
+}
+
+.PythonText {
+  composes: IconText;
+
+  &::before {
+    background-color: #3776ab;
+    -webkit-mask-image: url(/img/python.svg);
+    mask-image: url(/img/python.svg);
+  }
+}
+
+.DjangoText {
+  composes: IconText;
+
+  &::before {
+    -webkit-mask-image: url(/img/django.svg);
+    mask-image: url(/img/django.svg);
+  }
+}
+
+.GoText {
+  composes: IconText;
+
+  &::before {
+    background-color: #00add8;
+    -webkit-mask-image: url(/img/go.svg);
+    mask-image: url(/img/go.svg);
+  }
+}
+
+.Auth0Text {
+  composes: IconText;
+
+  &::before {
+    background-color: #eb5424;
+    -webkit-mask-image: url(/img/auth0.svg);
+    mask-image: url(/img/auth0.svg);
+  }
+}

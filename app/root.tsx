@@ -1,3 +1,5 @@
+import type { MetaFunction } from "@remix-run/cloudflare";
+import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -5,6 +7,26 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import styles from "./root.scss?url"
+import classes from "./root.module.scss";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+  { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" },
+];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "lapi.tokyo" },
+    {
+      name: "description",
+      content: "Lapi's personal website.",
+    },
+  ];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +38,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+      <div className={classes.layout}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
