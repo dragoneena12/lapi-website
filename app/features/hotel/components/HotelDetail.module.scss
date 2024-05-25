@@ -1,0 +1,62 @@
+.Container {
+  max-width: 1200px;
+  padding: 16px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & > * {
+    margin: 16px;
+  }
+}
+
+.Button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--color-link);
+  border: solid 1px var(--color-link);
+  background-color: transparent;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 100%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  margin: 8px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--color-link);
+    color: var(--color-text-white);
+  }
+}
+
+.BoxWrapper {
+  margin: 8px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.Box {
+  border: solid 2px #fff;
+  border-radius: 20px;
+  padding: 12px;
+  width: 300px;
+  margin: 20px;
+}
+
+.List {
+  list-style-position: inside;
+}
+
+.Text {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+}

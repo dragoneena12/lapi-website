@@ -1,0 +1,6 @@
+query findMyStays {
+  stays {
+    id
+    hotelID
+  }
+}

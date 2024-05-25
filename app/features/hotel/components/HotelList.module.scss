@@ -1,0 +1,97 @@
+.Container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.CardDeck {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.HotelCard {
+  border: solid 2px #fff;
+  border-radius: 20px;
+  padding: 12px;
+  width: 300px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.HotelDescription{
+  display: flex;
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.7rem;
+    background-color: #fff;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/img/home.svg);
+    mask-image: url(/img/home.svg);
+  }
+}
+
+.ButtonContainer {
+  display: flex;
+}
+
+.VerticalButtonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.Button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--color-link);
+  border: solid 1px var(--color-link);
+  background-color: transparent;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 100%;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  margin: 8px;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover {
+    background-color: var(--color-link);
+    color: var(--color-text-white);
+  }
+}
+
+.Success {
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.7rem;
+    background-color: var(--color-success);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(/img/checkmark.svg);
+    mask-image: url(/img/checkmark.svg);
+  }
+}
+
+.Error {
+  color: var(--color-danger);
+}
