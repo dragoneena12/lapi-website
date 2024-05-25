@@ -5,11 +5,11 @@ import { User } from "@/types/user";
 
 export const authenticator = new Authenticator<User>(sessionStorage);
 
-export const setStrategy = (clientSecret: string) => {
+export const setStrategy = (hostname: string, clientID: string, clientSecret: string) => {
   const auth0Strategy = new Auth0Strategy(
     {
-      callbackURL: "http://localhost:5173/hotel/callback",
-      clientID: "ub3YBp0z2VuVSxa9NY98SJff46FCM4CQ",
+      callbackURL: hostname + "/hotel/callback",
+      clientID: clientID,
       clientSecret: clientSecret,
       domain: "lapi.us.auth0.com",
     },

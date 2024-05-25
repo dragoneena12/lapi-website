@@ -30,9 +30,11 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = ({ context }: LoaderFunctionArgs) => {
+  const hostname = context.cloudflare.env.HOSTNAME
+  const auth0ClientID = context.cloudflare.env.AUTH0_CLIENT_ID
   const auth0ClientSecret = context.cloudflare.env.AUTH0_CLIENT_SECRET
-  setStrategy(auth0ClientSecret);
   const apiEndpoint = context.cloudflare.env.API_ENDPOINT
+  setStrategy(hostname, auth0ClientID, auth0ClientSecret);
   setEndpoint(apiEndpoint);
   return null
 };
