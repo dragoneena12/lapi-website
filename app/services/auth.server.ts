@@ -14,7 +14,6 @@ export const setStrategy = (hostname: string, clientID: string, clientSecret: st
       domain: "lapi.us.auth0.com",
     },
     async ({ accessToken, profile }) => {
-      console.log(accessToken)
       const user: User = {
         accessToken: accessToken,
         id: profile.id || "",
