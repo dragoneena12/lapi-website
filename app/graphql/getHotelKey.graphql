@@ -1,5 +1,0 @@
-query getHotelKey($id: ID!) {
-  hotelKey(id: $id) {
-    key
-  }
-}
