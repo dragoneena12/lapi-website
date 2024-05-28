@@ -1,22 +1,40 @@
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
+import { graphql } from "@/generated";
 import Hotel from "@/features/hotel/components/Hotel";
 import { authenticator } from "@/services/auth.server";
 import { useLoaderData } from "@remix-run/react";
-import { sdk, sdkWithToken } from "@/services/graphql.server";
+import { client, clientWithToken } from "@/services/graphql.server";
+
+const findHotels = graphql(`
+  query findHotels {
+    hotels {
+      id
+      ownerID
+      name
+      location
+    }
+  }
+`);
+
+const findMyStayCount = graphql(`
+  query stayCount {
+    stayCount
+  }
+`);
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const hotels = (await sdk().findHotels());
-  const user = await authenticator.isAuthenticated(request)
+  const hotels = (await client().query({ query: findHotels })).data;
+  const user = await authenticator.isAuthenticated(request);
   if (!user) {
-    return json({ hotels, user: null, stays: 0});
+    return json({ hotels, user: null, stayCount: 0 });
   }
-  const stays = (await sdkWithToken(user.accessToken).stayCount()).stayCount;
-  return json({ hotels, user, stays });
-}
+  const { stayCount } = (
+    await clientWithToken(user.accessToken).query({ query: findMyStayCount })
+  ).data;
+  return json({ hotels, user, stayCount });
+};
 
 export default function Page() {
-  const {user, stays, hotels} = useLoaderData<typeof loader>();
-  return (
-    <Hotel user={user} stayCount={stays} hotels={hotels} />
-  );
+  const { hotels, user, stayCount } = useLoaderData<typeof loader>();
+  return <Hotel user={user} stayCount={stayCount} hotels={hotels} />;
 }

@@ -1,21 +1,60 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/cloudflare";
-import { sdkWithToken } from "@/services/graphql.server";
+import { clientWithToken } from "@/services/graphql.server";
 import HotelForm from "@/features/hotel/components/HotelForm";
 import { authenticator } from "@/services/auth.server";
+import { graphql } from "@/generated";
+import { AddHotelMutationVariables } from "@/generated/graphql";
 
-export const action = async ({request}: ActionFunctionArgs) => {
-  const user = await authenticator.isAuthenticated(request)
+const addHotel = graphql(`
+  mutation addHotel(
+    $name: String!
+    $location: String!
+    $carbonAwards: [String!]!
+    $fullereneAwards: [String!]!
+    $carbonNanotubeAwards: [String!]!
+    $grapheneAwards: [String!]!
+    $diamondAwards: [String!]!
+  ) {
+    addHotel(
+      input: {
+        name: $name
+        location: $location
+        carbonAwards: $carbonAwards
+        fullereneAwards: $fullereneAwards
+        carbonNanotubeAwards: $carbonNanotubeAwards
+        grapheneAwards: $grapheneAwards
+        diamondAwards: $diamondAwards
+      }
+    ) {
+      id
+      ownerID
+      name
+      location
+      carbonAwards
+      fullereneAwards
+      carbonNanotubeAwards
+      grapheneAwards
+      diamondAwards
+    }
+  }
+`);
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  const user = await authenticator.isAuthenticated(request);
   if (!user) {
     return redirect("/hotel");
   }
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const hotel = await sdkWithToken(user.accessToken).addHotel({ ...data });
-  return redirect(`/hotel/${hotel.addHotel.id}`);
-}
+  const hotel = (
+    await clientWithToken(user.accessToken).mutate({
+      mutation: addHotel,
+      variables: data as AddHotelMutationVariables,
+    })
+  ).data?.addHotel;
+  return redirect(`/hotel/${hotel?.id}`);
+};
 
 export default function Page() {
-  return (
-    <HotelForm edit={false} />
-  );
+  return <HotelForm edit={false} />;
 }

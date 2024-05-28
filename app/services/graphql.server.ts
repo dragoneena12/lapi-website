@@ -1,22 +1,23 @@
-import { GraphQLClient } from 'graphql-request'
-import { getSdk } from '@/generated/graphql'
+import { ApolloClient, InMemoryCache } from "@apollo/client/index";
 
 let endpoint = ""
 
-export const sdk = () => {
-  const client = new GraphQLClient(endpoint, { fetch })
-  return getSdk(client)
-}
+export const client = () => new ApolloClient({
+    uri: endpoint,
+    cache: new InMemoryCache({
+      addTypename: false
+    }),
+});
 
-export const sdkWithToken = (token: string) => {
-  const client = new GraphQLClient(endpoint, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
-    fetch
-  })
-  return getSdk(client)
-}
+export const clientWithToken = (token: string) => new ApolloClient({
+  uri: endpoint,
+  cache: new InMemoryCache({
+    addTypename: false
+  }),
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+});
 
 export const setEndpoint = (newEndpoint: string) => {
   endpoint = newEndpoint

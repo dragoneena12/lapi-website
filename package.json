@@ -11,9 +11,10 @@
     "start": "wrangler pages dev ./build/client",
     "typecheck": "tsc",
     "typegen": "wrangler types",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "codegen": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.4",
     "@remix-run/cloudflare": "^2.9.2",
     "@remix-run/cloudflare-pages": "^2.9.2",
     "@remix-run/react": "^2.9.2",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240512.0",
     "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.6",
     "@graphql-codegen/introspection": "^4.0.3",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@remix-run/dev": "^2.9.2",
@@ -44,7 +46,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "node-fetch": "^3.3.2",
     "sass": "^1.77.2",
-    "typescript": "^5.1.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1",
     "wrangler": "3.57.1"
