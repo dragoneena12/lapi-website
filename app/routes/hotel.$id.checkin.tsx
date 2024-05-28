@@ -1,6 +1,6 @@
 import Checkin from "@/features/hotel/components/Checkin";
 import { graphql } from "@/generated";
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 import { clientWithToken } from "@/services/graphql.server";
 import { ApolloError } from "@apollo/client/index";
 import { ActionFunctionArgs, json, redirect } from "@remix-run/cloudflare";
@@ -14,18 +14,18 @@ const checkin = graphql(`
   }
 `);
 
-export const action = async ({ request, params }: ActionFunctionArgs) => {
+export const action = async ({ request, params, context }: ActionFunctionArgs) => {
   if (!params.id) {
     return redirect("/hotel");
   }
-  const user = await authenticator.isAuthenticated(request);
+  const user = await getAuthenticator(context).isAuthenticated(request);
   if (!user) {
     return redirect("/hotel");
   }
   const formData = await request.formData();
   const otp = formData.get("otp");
   try{
-    await clientWithToken(user.accessToken).mutate({
+    await clientWithToken(context, user.accessToken).mutate({
       mutation: checkin,
       variables: { hotelID: params.id, otp: otp as string },
     });

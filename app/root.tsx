@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs, MetaFunction, LinksFunction } from "@remix-run/cloudflare";
+import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 import {
   Links,
   Meta,
@@ -11,8 +11,6 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import styles from "./root.scss?url"
 import classes from "./root.module.scss";
-import { setStrategy } from "./services/auth.server";
-import { setEndpoint } from "./services/graphql.server";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -28,17 +26,6 @@ export const meta: MetaFunction = () => {
     },
   ];
 };
-
-export const loader = ({ context }: LoaderFunctionArgs) => {
-  const hostname = context.cloudflare.env.HOSTNAME
-  const auth0ClientID = context.cloudflare.env.AUTH0_CLIENT_ID
-  const auth0ClientSecret = context.cloudflare.env.AUTH0_CLIENT_SECRET
-  const apiEndpoint = context.cloudflare.env.API_ENDPOINT
-  setStrategy(hostname, auth0ClientID, auth0ClientSecret);
-  setEndpoint(apiEndpoint);
-  return null
-};
-
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

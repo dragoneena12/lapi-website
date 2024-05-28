@@ -20,12 +20,12 @@ const getHotelDetail = graphql(`
   }
 `);
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   if (!params.id) {
     return redirect("/hotel");
   }
   const hotel = (
-    await client().query({
+    await client(context).query({
       query: getHotelDetail,
       variables: { id: params.id },
     })

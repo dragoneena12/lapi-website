@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs, json, redirect } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { clientWithToken } from "@/services/graphql.server";
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 import ShowHotelKey from "@/features/hotel/components/ShowHotelKey";
 import { graphql } from "@/generated";
 
@@ -13,16 +13,16 @@ const getHotelKey = graphql(`
   }
 `);
 
-export const loader = async ({ request, params }: LoaderFunctionArgs) => {
+export const loader = async ({ request, params, context }: LoaderFunctionArgs) => {
   if (!params.id) {
     return redirect("/hotel");
   }
-  const user = await authenticator.isAuthenticated(request);
+  const user = await getAuthenticator(context).isAuthenticated(request);
   if (!user) {
     return redirect("/hotel");
   }
   const hotelKey = (
-    await clientWithToken(user.accessToken).query({
+    await clientWithToken(context, user.accessToken).query({
       query: getHotelKey,
       variables: { id: params.id },
     })

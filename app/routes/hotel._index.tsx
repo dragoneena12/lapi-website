@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
 import { graphql } from "@/generated";
 import Hotel from "@/features/hotel/components/Hotel";
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 import { useLoaderData } from "@remix-run/react";
 import { client, clientWithToken } from "@/services/graphql.server";
 
@@ -22,14 +22,14 @@ const findMyStayCount = graphql(`
   }
 `);
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const hotels = (await client().query({ query: findHotels })).data;
-  const user = await authenticator.isAuthenticated(request);
+export const loader = async ({ request, context }: LoaderFunctionArgs) => {
+  const hotels = (await client(context).query({ query: findHotels })).data;
+  const user = await getAuthenticator(context).isAuthenticated(request);
   if (!user) {
     return json({ hotels, user: null, stayCount: 0 });
   }
   const { stayCount } = (
-    await clientWithToken(user.accessToken).query({ query: findMyStayCount })
+    await clientWithToken(context, user.accessToken).query({ query: findMyStayCount })
   ).data;
   return json({ hotels, user, stayCount });
 };

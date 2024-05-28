@@ -7,7 +7,7 @@ import {
 import { useLoaderData } from "@remix-run/react";
 import { client, clientWithToken } from "@/services/graphql.server";
 import HotelForm from "@/features/hotel/components/HotelForm";
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 import { graphql } from "@/generated";
 import { EditHotelMutationVariables } from "@/generated/graphql";
 
@@ -63,12 +63,12 @@ const editHotel = graphql(`
   }
 `);
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   if (!params.id) {
     return redirect("/hotel");
   }
   const hotel = (
-    await client().query({
+    await client(context).query({
       query: getHotelDetail,
       variables: { id: params.id },
     })
@@ -76,18 +76,18 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json({ hotel });
 };
 
-export const action = async ({ request, params }: ActionFunctionArgs) => {
+export const action = async ({ request, params, context }: ActionFunctionArgs) => {
   if (!params.id) {
     return redirect("/hotel");
   }
-  const user = await authenticator.isAuthenticated(request);
+  const user = await getAuthenticator(context).isAuthenticated(request);
   if (!user) {
     return redirect("/hotel");
   }
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  await clientWithToken(user.accessToken).mutate({
+  await clientWithToken(context, user.accessToken).mutate({
     mutation: editHotel,
     variables: { id: params.id, ...data } as EditHotelMutationVariables,
   });

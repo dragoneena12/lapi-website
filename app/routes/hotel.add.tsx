@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/cloudflare";
 import { clientWithToken } from "@/services/graphql.server";
 import HotelForm from "@/features/hotel/components/HotelForm";
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 import { graphql } from "@/generated";
 import { AddHotelMutationVariables } from "@/generated/graphql";
 
@@ -39,15 +39,15 @@ const addHotel = graphql(`
   }
 `);
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const user = await authenticator.isAuthenticated(request);
+export const action = async ({ request, context }: ActionFunctionArgs) => {
+  const user = await getAuthenticator(context).isAuthenticated(request);
   if (!user) {
     return redirect("/hotel");
   }
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const hotel = (
-    await clientWithToken(user.accessToken).mutate({
+    await clientWithToken(context, user.accessToken).mutate({
       mutation: addHotel,
       variables: data as AddHotelMutationVariables,
     })

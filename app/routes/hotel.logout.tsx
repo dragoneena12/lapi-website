@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs } from "@remix-run/cloudflare";
 
-import { authenticator } from "@/services/auth.server";
+import { getAuthenticator } from "@/services/auth.server";
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  await authenticator.logout(request, {redirectTo: "/hotel"});
+export const action = async ({ request, context }: ActionFunctionArgs) => {
+  await getAuthenticator(context).logout(request, {redirectTo: "/hotel"});
 };
