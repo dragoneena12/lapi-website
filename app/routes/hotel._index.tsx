@@ -4,6 +4,7 @@ import Hotel from "@/features/hotel/components/Hotel";
 import { getAuthenticator } from "@/services/auth.server";
 import { useLoaderData } from "@remix-run/react";
 import { client, clientWithToken } from "@/services/graphql.server";
+import { ApolloError } from "@apollo/client/index";
 
 const findHotels = graphql(`
   query findHotels {
@@ -28,10 +29,18 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   if (!user) {
     return json({ hotels, user: null, stayCount: 0 });
   }
-  const { stayCount } = (
-    await clientWithToken(context, user.accessToken).query({ query: findMyStayCount })
-  ).data;
-  return json({ hotels, user, stayCount });
+  try {
+    const { stayCount } = (
+      await clientWithToken(context, user.accessToken).query({ query: findMyStayCount })
+    ).data;
+    return json({ hotels, user, stayCount });
+  } catch (error) {
+    if (error instanceof ApolloError && error.networkError && "statusCode" in error.networkError && error.networkError.statusCode === 401) {
+      await getAuthenticator(context).logout(request, {redirectTo: "/hotel"});
+    } else {
+      throw error;
+    }
+  }
 };
 
 export default function Page() {
