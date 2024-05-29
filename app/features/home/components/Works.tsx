@@ -25,6 +25,7 @@ const Works: React.FC = () => {
             <div className={classes.GoText}>Go</div>
             <div className={classes.CloudflareText}>Cloudflare</div>
             <div className={classes.Auth0Text}>Auth0</div>
+            <div className={classes.KubernetesText}>Kubernetes</div>
           </div>
           <p>
             宅オフの実績を付けて特典を受けられるシステム。うちに誰か来たら使うかも？
