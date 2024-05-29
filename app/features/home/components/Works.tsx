@@ -23,6 +23,7 @@ const Works: React.FC = () => {
             <div className={classes.RemixText}>Remix</div>
             <div className={classes.GraphqlText}>Graphql</div>
             <div className={classes.GoText}>Go</div>
+            <div className={classes.CloudflareText}>Cloudflare</div>
             <div className={classes.Auth0Text}>Auth0</div>
           </div>
           <p>
@@ -80,6 +81,8 @@ const Works: React.FC = () => {
             <div className={classes.ReactText}>React</div>
             <div className={classes.RemixText}>Remix</div>
             <div className={classes.DenoText}>Deno</div>
+            <div className={classes.CloudflareText}>Cloudflare</div>
+            <div className={classes.AWSText}>AWS</div>
           </div>
           <p>
             ケモノ・Furryイベントの情報をまとめ、記録ができるアプリ。再開発中…

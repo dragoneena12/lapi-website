@@ -173,3 +173,20 @@
     mask-image: url(/img/auth0.svg);
   }
 }
+
+.CloudflareText {
+  composes: IconText;
+
+  &::before {
+    background-color: #f38020;
+    mask-image: url(/img/cloudflare.svg);
+  }
+}
+
+.AWSText {
+  composes: IconText;
+
+  &::before {
+    mask-image: url(/img/amazonaws.svg);
+  }
+}
