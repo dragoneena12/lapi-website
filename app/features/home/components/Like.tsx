@@ -20,9 +20,9 @@ const Like: React.FC = () => {
         <div className={classes.Box}>
           <p className={classes.PCText}>Engineering</p>
           <ul className={classes.List}>
-            <li>React / TypeScript / Gatsby.js</li>
+            <li>TypeScript / Go</li>
+            <li>React / Remix</li>
             <li>Kubernetes / Docker</li>
-            <li>C++ / Go / Python</li>
           </ul>
         </div>
 

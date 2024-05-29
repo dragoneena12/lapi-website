@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
-import Heading from "@/components/heading/Heading"
-import classes from "./Works.module.scss"
+import Heading from "@/components/heading/Heading";
+import classes from "./Works.module.scss";
 
 const Works: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Works: React.FC = () => {
       <div className={classes.Works}>
         <div className={classes.Box}>
           <a
-            href="https://www.lapi.tokyo/hotel"
+            href="https://lapi.tokyo/hotel"
             target="_blank"
             rel="noopener noreferrer"
             className={classes.Link}
@@ -20,7 +20,7 @@ const Works: React.FC = () => {
           <div className={classes.Languages}>
             <div className={classes.TSText}>TypeScript</div>
             <div className={classes.ReactText}>React</div>
-            <div className={classes.GatsbyText}>Gatsby</div>
+            <div className={classes.RemixText}>Remix</div>
             <div className={classes.GraphqlText}>Graphql</div>
             <div className={classes.GoText}>Go</div>
             <div className={classes.Auth0Text}>Auth0</div>
@@ -52,14 +52,7 @@ const Works: React.FC = () => {
         </div>
 
         <div className={classes.Box}>
-          <a
-            href="https://poker.lapi.tokyo/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.Link}
-          >
-            <h2 className={classes.BoxHeading}>Texias Hold&apos;em</h2>
-          </a>
+          <h2 className={classes.BoxHeading}>Texias Hold&apos;em</h2>
           <div className={classes.Languages}>
             <div className={classes.TSText}>TypeScript</div>
             <div className={classes.ReactText}>React</div>
@@ -67,7 +60,7 @@ const Works: React.FC = () => {
             <div className={classes.PythonText}>Python3</div>
           </div>
           <p>
-            簡単にテキサスホールデムのネット対戦を楽しめるアプリ。思い出したときにぼちぼち製作中。
+            簡単にテキサスホールデムのネット対戦を楽しめるアプリ。開発停止中…
           </p>
 
           <a
@@ -81,22 +74,16 @@ const Works: React.FC = () => {
         </div>
 
         <div className={classes.Box}>
-          <a
-            href="https://www.furport.tk/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.Link}
-          >
-            <h2 className={classes.BoxHeading}>FurPort</h2>
-          </a>
+          <h2 className={classes.BoxHeading}>FurPort</h2>
           <div className={classes.Languages}>
-            <div className={classes.JSText}>JavaScript</div>
             <div className={classes.TSText}>TypeScript</div>
             <div className={classes.ReactText}>React</div>
-            <div className={classes.PythonText}>Python3</div>
-            <div className={classes.DjangoText}>Django</div>
+            <div className={classes.RemixText}>Remix</div>
+            <div className={classes.DenoText}>Deno</div>
           </div>
-          <p>ケモノ・Furryイベントの情報をまとめ、記録ができるアプリ。</p>
+          <p>
+            ケモノ・Furryイベントの情報をまとめ、記録ができるアプリ。再開発中…
+          </p>
 
           <a
             href="https://github.com/lapi-hotel-group/furport-front"
@@ -109,7 +96,7 @@ const Works: React.FC = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Works
+export default Works;
