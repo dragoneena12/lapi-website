@@ -10,7 +10,6 @@ const findHotels = graphql(`
   query findHotels {
     hotels {
       id
-      ownerID
       name
       location
     }

@@ -9,7 +9,10 @@ const findMyStays = graphql(`
   query findMyStays {
     stays {
       id
-      hotelID
+      checkinTime
+      hotel {
+        name
+      }
     }
   }
 `);

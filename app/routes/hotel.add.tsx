@@ -27,7 +27,6 @@ const addHotel = graphql(`
       }
     ) {
       id
-      ownerID
       name
       location
       carbonAwards

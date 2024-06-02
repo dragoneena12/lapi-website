@@ -8,7 +8,6 @@ const getHotelDetail = graphql(`
   query getHotelDetail($id: ID!) {
     hotel(id: $id) {
       id
-      ownerID
       name
       location
       carbonAwards

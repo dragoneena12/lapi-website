@@ -12,8 +12,8 @@ const StayHistory = ({ stays }: {stays: FindMyStaysQuery}) => {
       <div className={classes.BoxContainer}>
         {s.map(stay => (
           <div className={classes.Box} key={stay.id}>
-            <h2>{stay.hotelID}</h2>
-            <p>date</p>
+            <h2>{stay.hotel.name}</h2>
+            <p>{new Date(stay.checkinTime).toLocaleDateString()}</p>
           </div>
         ))}
       </div>
