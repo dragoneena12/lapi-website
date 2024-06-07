@@ -35,7 +35,7 @@ const HotelList = ({
               <Link to={"/hotel/" + hotel.id} className={classes.Button}>
                 特典内容を見る
               </Link>
-              {user?.id === hotel.ownerID && (
+              {user && user.id === hotel.ownerID && (
                 <>
                   <Link
                     to={"/hotel/" + hotel.id + "/edit"}

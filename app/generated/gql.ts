@@ -17,7 +17,7 @@ const documents = {
     "\n  mutation checkin($hotelID: ID!, $otp: String!) {\n    checkin(input: { hotelID: $hotelID, otp: $otp }) {\n      id\n    }\n  }\n": types.CheckinDocument,
     "\n  mutation editHotel(\n    $id: ID!\n    $name: String!\n    $location: String!\n    $carbonAwards: [String!]!\n    $fullereneAwards: [String!]!\n    $carbonNanotubeAwards: [String!]!\n    $grapheneAwards: [String!]!\n    $diamondAwards: [String!]!\n  ) {\n    editHotel(\n      input: {\n        id: $id\n        name: $name\n        location: $location\n        carbonAwards: $carbonAwards\n        fullereneAwards: $fullereneAwards\n        carbonNanotubeAwards: $carbonNanotubeAwards\n        grapheneAwards: $grapheneAwards\n        diamondAwards: $diamondAwards\n      }\n    ) {\n      id\n      name\n      location\n      carbonAwards\n      fullereneAwards\n      carbonNanotubeAwards\n      grapheneAwards\n      diamondAwards\n    }\n  }\n": types.EditHotelDocument,
     "\n  query getHotelKey($id: ID!) {\n    hotelKey(id: $id) {\n      key\n    }\n  }\n": types.GetHotelKeyDocument,
-    "\n  query findHotels {\n    hotels {\n      id\n      name\n      location\n    }\n  }\n": types.FindHotelsDocument,
+    "\n  query findHotels {\n    hotels {\n      id\n      ownerID\n      name\n      location\n    }\n  }\n": types.FindHotelsDocument,
     "\n  query stayCount {\n    stayCount\n  }\n": types.StayCountDocument,
     "\n  mutation addHotel(\n    $name: String!\n    $location: String!\n    $carbonAwards: [String!]!\n    $fullereneAwards: [String!]!\n    $carbonNanotubeAwards: [String!]!\n    $grapheneAwards: [String!]!\n    $diamondAwards: [String!]!\n  ) {\n    addHotel(\n      input: {\n        name: $name\n        location: $location\n        carbonAwards: $carbonAwards\n        fullereneAwards: $fullereneAwards\n        carbonNanotubeAwards: $carbonNanotubeAwards\n        grapheneAwards: $grapheneAwards\n        diamondAwards: $diamondAwards\n      }\n    ) {\n      id\n      name\n      location\n      carbonAwards\n      fullereneAwards\n      carbonNanotubeAwards\n      grapheneAwards\n      diamondAwards\n    }\n  }\n": types.AddHotelDocument,
     "\n  query findMyStays {\n    stays {\n      id\n      checkinTime\n      hotel {\n        name\n      }\n    }\n  }\n": types.FindMyStaysDocument,
@@ -56,7 +56,7 @@ export function graphql(source: "\n  query getHotelKey($id: ID!) {\n    hotelKey
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query findHotels {\n    hotels {\n      id\n      name\n      location\n    }\n  }\n"): (typeof documents)["\n  query findHotels {\n    hotels {\n      id\n      name\n      location\n    }\n  }\n"];
+export function graphql(source: "\n  query findHotels {\n    hotels {\n      id\n      ownerID\n      name\n      location\n    }\n  }\n"): (typeof documents)["\n  query findHotels {\n    hotels {\n      id\n      ownerID\n      name\n      location\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
