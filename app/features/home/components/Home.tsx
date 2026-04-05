@@ -6,12 +6,16 @@ import Works from "./Works"
 import Feed from "./Feed"
 import classes from "./Home.module.scss"
 
-const Home: React.FC = () => (
+type Props = {
+  feed: string
+}
+
+const Home: React.FC<Props> = ({ feed }) => (
   <div className={classes.Home}>
     <Profile />
     <Like />
     <Works />
-    <Feed />
+    <Feed data={feed} />
   </div>
 )
 

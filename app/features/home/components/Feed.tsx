@@ -2,10 +2,9 @@ import React from "react";
 import Convert from "xml-js";
 
 import Heading from "@/components/heading/Heading";
-import data from "@/data/feed";
 import classes from "./Feed.module.scss";
 
-type Feed = {
+type FeedData = {
   rss: {
     channel: {
       item: {
@@ -31,8 +30,12 @@ type Feed = {
   };
 };
 
-const Feed: React.FC = () => {
-  const feed = Convert.xml2js(data, { compact: true }) as Feed;
+type Props = {
+  data: string;
+};
+
+const Feed: React.FC<Props> = ({ data }) => {
+  const feed = Convert.xml2js(data, { compact: true }) as FeedData;
   return (
     <>
       <Heading>Articles</Heading>
